@@ -14,13 +14,16 @@ const handleNovoItem = (evento) => {
   const dataFormatada = data.format("DD/MM/YYYY HH:mm");
 
   const dados = {
-    valor, 
-    dataFormatada
-  }
+    valor,
+    dataFormatada,
+  };
 
   const criaTarefa = criarTarefa(dados);
 
   lista.appendChild(criaTarefa);
+
+  sessionStorage.setItem("tarefas", JSON.stringify(dados));
+
   input.value = " ";
 };
 
