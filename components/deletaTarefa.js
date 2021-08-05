@@ -1,21 +1,21 @@
-const BotaoDeleta = () => { 
-    const botaoDeleta = document.createElement('button')
+const deletarTarefa = (atualiza, id) => {
+  const index = id;
+  const tarefasCadastradas = JSON.parse(localStorage.getItem("tarefas"));
 
-    botaoDeleta.innerText = 'deletar'
-    botaoDeleta.addEventListener('click', deletarTarefa)
+  tarefasCadastradas.splice(index, 1);
 
-    return botaoDeleta
-}
+  localStorage.setItem("tarefas", JSON.stringify(tarefasCadastradas));
 
-const deletarTarefa = (evento) => { 
-    const botaoDeleta = evento.target
-    
-    const tarefaCompleta = botaoDeleta.parentElement
+  atualiza();
+};
 
-    tarefaCompleta.remove()
+const BotaoDeleta = (atualiza, id) => {
+  const botaoDeleta = document.createElement("button");
 
-    return botaoDeleta
+  botaoDeleta.innerText = "deletar";
+  botaoDeleta.addEventListener("click", () => deletarTarefa(atualiza, id));
 
-}
+  return botaoDeleta;
+};
 
-export default BotaoDeleta
+export default BotaoDeleta;
